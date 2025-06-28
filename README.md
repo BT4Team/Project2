@@ -1,7 +1,7 @@
 <h1 align="center">Dex2c – APK Protection by BT4 Team</h1>
 
 <p align="center">
-  <b>Dex2c</b> is an advanced APK protection and obfuscation solution developed by the <b>BT4 Team</b>.<br>
+  <b>Dex2c</b> is an advanced APK protection and obfuscation solution.<br>
   It converts APK DEX code into protected native libraries, making reverse engineering and tampering significantly harder.
 </p>
 
