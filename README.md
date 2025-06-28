@@ -38,7 +38,8 @@
 <h2>⚙️ Installation Guide</h2>
 
 <h3>✅ 1. Install Termux</h3>
-<p>Download and install the latest version of Termux from F-Droid or Google Play.</p>
+<p>Download and install the latest version of Termux from <a href='https://f-droid.org/packages/com.termux/'>F-Droid</a> or <a href='https://play.google.com/store/apps/details?id=com.termux'>Google Play</a>.</p>
+
 
 <h3>✅ 2. Install Dex2c</h3>
 
@@ -48,3 +49,8 @@ wget -O dex2c.sh https://raw.githubusercontent.com/BT4Team/BT4-Dex2c/main/dex2c.
 chmod +x dex2c.sh
 ./dex2c.sh
 ```
+
+<h3>✅ 3. Install Dex2c BT4 App</h3>
+<p>Download and install the latest version of Dex2c BT4 <a href='https://f-droid.org/packages/com.termux/'>GitHub</a>.</p>
+
+<h3>✅ 4. Installation Completed</h3>
