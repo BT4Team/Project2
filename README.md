@@ -51,6 +51,10 @@ chmod +x dex2c.sh
 ```
 
 <h3>✅ 3. Install Dex2c BT4 App</h3>
-<p>Download and install the latest version of Dex2c BT4 <a href='https://f-droid.org/packages/com.termux/'>GitHub</a>.</p>
+<p>Download and install the latest version of Dex2c BT4 from <a href='https://f-droid.org/packages/com.termux/'>GitHub</a>.</p>
 
-<h3>✅ 4. Installation Completed</h3>
+<h3>✅ 4. Open Dex2c BT4 and follow instructions.</h3>
+
+<h3>✅ 5. Installation Completed.</h3>
+
+<h3>✅ 6. Now you can protect your application with Dex2c</h3>
