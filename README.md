@@ -47,3 +47,5 @@ pkg install wget -y
 wget -O dex2c.sh https://raw.githubusercontent.com/BT4Team/BT4-Dex2c/main/dex2c.sh
 chmod +x dex2c.sh
 ./dex2c.sh
+
+<h3>✅ 3. Install Dex2c BT4 App</h3>
