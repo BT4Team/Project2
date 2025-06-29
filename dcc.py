@@ -135,7 +135,7 @@ def modify_application_name(manifest_path, custom_loader):
 def clean_tmp_directory():
     tmpdir = ".tmp"
     try:
-        Logger.info("ComplCompleted Dex2c")
+        Logger.info("Dex2c Completing...")
         rmtree(tmpdir)
     except OSError:
         run(["rd", "/s", "/q", tmpdir], shell=True)
@@ -209,7 +209,7 @@ def change_max_sdk(command=list(), max_sdk="33", update_existing=True):
 
 # n
 def zipalign(input_apk, output_apk):
-    Logger.info(f"Zipaligning {input_apk}")
+    Logger.info(f"Zipaligning {output_apk}")
 
     command = [
         "zipalign",
@@ -700,7 +700,7 @@ def get_application_class_file(decompiled_dir, smali_folders, application_name):
 
 # n
 def backup_jni_project_folder():
-    Logger.info("Backing up jni folder")
+    Logger.info("Checking Application...")
 
     src_path = path.join("project", "jni")
     dest_path = make_temp_dir("jni-")
@@ -711,7 +711,7 @@ def backup_jni_project_folder():
 
 # n
 def restore_jni_project_folder(src_path):
-    Logger.info("Restoring jni folder")
+    Logger.info("Dec2c Almost Completed.")
 
     dest_path = path.join("project", "jni")
 
@@ -723,7 +723,7 @@ def restore_jni_project_folder(src_path):
 
 # n
 def adjust_application_mk(apkfile):
-    Logger.info("Adjusting Application.mk file using available abis from apk")
+    Logger.info("Adjusting Application.mk")
 
     supported_abis = {"armeabi-v7a", "arm64-v8a", "x86_64", "x86"}
     depreacated_abis = {"armeabi"}
@@ -753,7 +753,13 @@ def adjust_application_mk(apkfile):
 
         if len(available_abis) == 0:
             Logger.info(
-                "No lib abis found in apk, using the ones defined in Application.mk file"
+                "No lib abis found in apk."
+            )
+            Logger.info(
+                "Using armeabi-v7a and arm64-v8a abis."
+            )
+            Logger.info(
+                "Please wait sometimes."
             )
             return
 
