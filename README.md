@@ -51,7 +51,7 @@ chmod +x dex2c.sh
 ```
 
 <h3>✅ 3. Install Dex2c BT4 App</h3>
-<p>Download and install the latest version of Dex2c BT4 from <a href='https://f-droid.org/packages/com.termux/'>GitHub</a>.</p>
+<p>Download and install the latest version of Dex2c BT4 from <a href='https://raw.githubusercontent.com/BT4Team/BT4-Dex2c/main/Dex2c_BT4_1.0.apk'>GitHub</a>.</p>
 
 <h3>✅ 4. Open Dex2c BT4 and follow instructions.</h3>
 
