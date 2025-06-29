@@ -41,7 +41,7 @@ NDKBUILD = "ndk-build"
 
 SKIP_SYNTHETIC_METHODS = False
 IGNORE_APP_LIB_ABIS = False
-Logger = getLogger("dcc")
+Logger = getLogger("Dex2c")
 
 
 def is_windows():
@@ -57,7 +57,7 @@ def cpu_count():
 
 # n
 def create_tmp_directory():
-    Logger.info("Creating .tmp folder")
+    Logger.info("Starting Dex2c")
     if not path.exists(".tmp"):
         os.mkdir(".tmp")
 
@@ -135,7 +135,7 @@ def modify_application_name(manifest_path, custom_loader):
 def clean_tmp_directory():
     tmpdir = ".tmp"
     try:
-        Logger.info("Removing .tmp folder")
+        Logger.info("ComplCompleted Dex2c")
         rmtree(tmpdir)
     except OSError:
         run(["rd", "/s", "/q", tmpdir], shell=True)
@@ -209,7 +209,7 @@ def change_max_sdk(command=list(), max_sdk="33", update_existing=True):
 
 # n
 def zipalign(input_apk, output_apk):
-    Logger.info(f"Zipaligning {input_apk} -> {output_apk}")
+    Logger.info(f"Zipaligning {input_apk}")
 
     command = [
         "zipalign",
@@ -231,7 +231,7 @@ def sign(unsigned_apk, signed_apk):
     signature = {}
     keystore = ""
 
-    Logger.info(f"Signing {unsigned_apk} -> {signed_apk}")
+    Logger.info(f"Signing {unsigned_apk}")
 
     with open("dcc.cfg") as fp:
         dcc_cfg = json.load(fp)
@@ -303,7 +303,7 @@ def sign(unsigned_apk, signed_apk):
 
 
 def move_unsigned(unsigned_apk, signed_apk):
-    Logger.info("Moving unsigned apk -> " + signed_apk)
+    Logger.info("Moving apk -> " + signed_apk)
     copy(unsigned_apk, signed_apk)
 
 
