@@ -110,7 +110,7 @@ if [ "$file_size" -lt 100000000 ]; then  # Check if file is too small (likely in
 fi
 
 # Extract NDK
-echo -e "${yellow}Extracting NDK...${nocolor}"
+echo -e "${yellow}Extracting NDK...It's will take sometimes...${nocolor}"
 if ! unzip -q "$ndk_zip" -d "$HOME/android-sdk/ndk"; then
     echo -e "${red}Error: Failed to extract NDK${nocolor}"
     rm -f "$ndk_zip"
