@@ -51,46 +51,79 @@ echo "${yellow}ANDROID SDK TOOLS Successfully Installed!${nocolor}"
 
 cd $HOME
 echo
-echo "${green}━━━ Starting NDK installation ━━━${nocolor}"
-echo "Now You'll be asked about which version of NDK to isntall"
-echo "${note}If your Android Version is 9 or above then choose ${red}'9'${nocolor}"
-echo "${note}If your Android Version is below 9 or if you faced issues with '9' (A9 and above users) then choose ${red}'8'${nocolor}"
-echo "${red} If you're choosing other options then you're on your own and experiment yourself ¯⁠\⁠_⁠ಠ⁠_⁠ಠ⁠_⁠/⁠¯${nocolor}"
-if [ -f "ndk-install.sh" ]; then
-  chmod +x ndk-install.sh && bash ndk-install.sh
-else
-  cd && wget https://github.com/MrIkso/AndroidIDE-NDK/raw/main/ndk-install.sh --no-verbose --show-progress -N && chmod +x ndk-install.sh && bash ndk-install.sh
+echo -e "${green}━━━ Starting NDK installation ━━━${nocolor}"
+echo "Installing NDK version 21.4.7075529 directly"
+
+# Create directories if they don't exist
+mkdir -p "$HOME/android-sdk/ndk"
+
+# Download NDK 21
+echo -e "${yellow}Downloading NDK 21.4.7075529...${nocolor}"
+ndk_url="https://dl.google.com/android/repository/android-ndk-r21e-linux-x86_64.zip"
+ndk_zip="$HOME/android-ndk-r21e-linux-x86_64.zip"
+
+# Try multiple download methods
+download_success=false
+
+if command -v wget &> /dev/null; then
+    echo "Trying wget..."
+    if wget "$ndk_url" -O "$ndk_zip" --no-verbose --show-progress; then
+        download_success=true
+    else
+        echo -e "${red}wget failed, trying curl...${nocolor}"
+        rm -f "$ndk_zip"
+    fi
 fi
 
-if [ -f "ndk-install.sh" ]; then
-  rm ndk-install.sh
+if [ "$download_success" = false ] && command -v curl &> /dev/null; then
+    echo "Trying curl..."
+    if curl -L "$ndk_url" -o "$ndk_zip" --progress-bar; then
+        download_success=true
+    else
+        echo -e "${red}curl failed${nocolor}"
+        rm -f "$ndk_zip"
+    fi
 fi
 
-if [ -d "$HOME/android-sdk/ndk/17.2.4988734" ]; then
-  ndk_version="17.2.4988734"
-elif [ -d "$HOME/android-sdk/ndk/18.1.5063045" ]; then
-  ndk_version="18.1.5063045"
-elif [ -d "$HOME/android-sdk/ndk/19.2.5345600" ]; then
-  ndk_version="19.2.5345600"
-elif [ -d "$HOME/android-sdk/ndk/20.1.5948944" ]; then
-  ndk_version="20.1.5948944"
-elif [ -d "$HOME/android-sdk/ndk/21.4.7075529" ]; then
-  ndk_version="21.4.7075529"
-elif [ -d "$HOME/android-sdk/ndk/22.1.7171670" ]; then
-  ndk_version="22.1.7171670"
-elif [ -d "$HOME/android-sdk/ndk/23.2.8568313" ]; then
-  ndk_version="23.2.8568313"
-elif [ -d "$HOME/android-sdk/ndk/24.0.8215888" ]; then
-  ndk_version="24.0.8215888"
-elif [ -d "$HOME/android-sdk/ndk/26.1.10909125" ]; then
-  ndk_version="26.1.10909125"
-elif [ -d "$HOME/android-sdk/ndk/27.1.12297006" ]; then
-  ndk_version="27.1.12297006"
-else
-  echo "${red}You didn't Installed any ndk terminating!"
-  exit 1
+if [ "$download_success" = false ]; then
+    echo -e "${red}Error: Could not download NDK 21 using either wget or curl${nocolor}"
+    echo -e "${yellow}Please try one of these solutions:${nocolor}"
+    echo "1. Make sure you have a stable internet connection"
+    echo "2. Try installing wget or curl first: pkg install wget curl"
+    echo "3. Download the file manually from:"
+    echo "   https://dl.google.com/android/repository/android-ndk-r21e-linux-x86_64.zip"
+    echo "   Then place it in $HOME and run the script again"
+    exit 1
 fi
-echo "${yellow}ANDROID NDK Successfully Installed!${nocolor}"
+
+# Verify the download
+if [ ! -f "$ndk_zip" ]; then
+    echo -e "${red}Error: NDK download failed - file not found${nocolor}"
+    exit 1
+fi
+
+file_size=$(stat -c%s "$ndk_zip")
+if [ "$file_size" -lt 100000000 ]; then  # Check if file is too small (likely incomplete)
+    echo -e "${red}Error: Downloaded file seems too small (might be incomplete)${nocolor}"
+    rm -f "$ndk_zip"
+    exit 1
+fi
+
+# Extract NDK
+echo -e "${yellow}Extracting NDK...${nocolor}"
+if ! unzip -q "$ndk_zip" -d "$HOME/android-sdk/ndk"; then
+    echo -e "${red}Error: Failed to extract NDK${nocolor}"
+    rm -f "$ndk_zip"
+    exit 1
+fi
+
+mv "$HOME/android-sdk/ndk/android-ndk-r21e" "$HOME/android-sdk/ndk/21.4.7075529"
+
+# Clean up
+rm -f "$ndk_zip"
+
+ndk_version="21.4.7075529"
+echo -e "${yellow}ANDROID NDK Successfully Installed!${nocolor}"
 
 cd $HOME
 echo
