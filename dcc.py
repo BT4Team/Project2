@@ -135,7 +135,9 @@ def modify_application_name(manifest_path, custom_loader):
 def clean_tmp_directory():
     tmpdir = ".tmp"
     try:
-        Logger.info("Dex2c Almost Completed.")
+        Logger.info("Dex2c Completed.")
+        Logger.info("Output saved to: /storage/emulated/0/")
+        Logger.info("© 2025 BT4 Team. All Rights Reserved.")
         rmtree(tmpdir)
     except OSError:
         run(["rd", "/s", "/q", tmpdir], shell=True)
@@ -711,9 +713,7 @@ def backup_jni_project_folder():
 
 # n
 def restore_jni_project_folder(src_path):
-    Logger.info("Dex2c Completed.")
-    Logger.info("Output saved to: /storage/emulated/0/")
-    Logger.info("© 2025 BT4 Team. All Rights Reserved.")
+    Logger.info("Dex2c Almost Completed.")
 
     dest_path = path.join("project", "jni")
 
